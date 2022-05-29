@@ -11,7 +11,7 @@ struct data_tag {
 
 
 data *calcolo_occorrenze(char *s);
-void add_node_in_order(data *head, data *nodo);
+void add_node_in_order(data *head, data *nodo, data **head_ptr);
 data *is_present(char p, data *head);
 
 void display(data *head_list){
@@ -47,7 +47,7 @@ void free_list(data *head){
 
 int main(){
 	
-	char *s = "Stringa";
+	char *s = "macosa";
 
 	data *list = calcolo_occorrenze(s);
 	
@@ -73,13 +73,13 @@ data *is_present(char p, data *head){
 }
 
 
-void add_node_in_order(data *head, data *nodo){
+void add_node_in_order(data *head, data *nodo, data **head_ptr){
 	if(head == NULL || nodo == NULL)
 		return;
 		
 	if(head->lett > nodo->lett){
 		nodo->next = head;
-		head = nodo;
+		*head_ptr = nodo;
 		return;
 	}
 	
@@ -110,17 +110,14 @@ data *calcolo_occorrenze(char *s){
 	while(p != '\0'){
 		if(ptr = is_present(p, head))
 			ptr->count++;
-		
-		if(head == NULL){
-			head->lett = p;
-			head->count = 1;
-			head->next = NULL;
-		} else {
-			data *nodo = (data *) malloc(sizeof(data));
-			nodo->lett = p;
-			nodo->count = 1;
-			nodo->next = NULL;
-			add_node_in_order(head, nodo);
+		else{
+			data *node = (data *) malloc(sizeof(data));
+				node->lett = p;
+				node->count = 1;
+				if(head == NULL)
+					head = node;
+				else
+					add_node_in_order(head, node, &head);
 		}
 		
 		p = s[counter++];
