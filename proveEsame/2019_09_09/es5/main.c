@@ -45,11 +45,16 @@ void free_list(data *head){
 
 
 
-int main(){
-	
-	char *s = "macosa";
+int main(int argc, char *argv[]){
 
-	data *list = calcolo_occorrenze(s);
+	if(argc != 2){
+		fprintf(stdout, "You must and only can add 1 CLI argument (the string to analyze). Please Retry...\n");
+		exit(1);
+	}
+	
+	
+
+	data *list = calcolo_occorrenze(argv[1]);
 	
 	display(list);
 	
