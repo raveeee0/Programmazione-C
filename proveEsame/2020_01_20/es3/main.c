@@ -1,5 +1,5 @@
 #include<stdlib.h>
-#include<sdtio.h>
+#include<stdio.h>
 
 typedef struct nodo_tag nodo;
 struct nodo_tag{
@@ -51,7 +51,7 @@ nodo* gen_node(int numero){
 
 void add_node(nodo *nuovo_nodo, nodo *head){
 	if(head == NULL)
-		return NULL;
+		return;
 		
 	nodo *ptr = head;
 	
@@ -72,6 +72,8 @@ void display_list(nodo *head){
 		fprintf(stdout, "%d\t", ptr->numero);
 		ptr = ptr->next;
 	}
+	
+	fprintf(stdout, "\n");
 
 	return;
 }
@@ -81,8 +83,8 @@ void somma_lista(nodo *head){
 	nodo *ptr = head;
 	
 	while(ptr){
-		int temp_sum = ptr->number;
-		ptr->number += temp;
+		int temp_sum = ptr->numero;
+		ptr->numero += temp;
 		temp = temp_sum;
 		
 		ptr = ptr->next;
