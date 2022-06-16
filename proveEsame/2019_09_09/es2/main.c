@@ -33,7 +33,7 @@ int main(){
 	
 	calcolo_valori(mat, data);
 	displayMatrice(mat);
-	fprintf(stdout, "\n%d\t%d\n", data->sum, data->prod);
+	fprintf(stdout, "\nSomma: %d\tProdotto: %d\n", data->sum, data->prod);
 	
 	
 	free(data);
