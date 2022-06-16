@@ -1,0 +1,5 @@
+Valore: 12 -> 2 ripetizioni
+Valore: 23 -> 2 ripetizioni
+Valore: 32 -> 1 ripetizioni
+Valore: 1 -> 4 ripetizioni
+Valore: 0 -> 5 ripetizioni
