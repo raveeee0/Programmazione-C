@@ -8,8 +8,10 @@ char* sostituzione_ricorsiva(char *string, int index1 /* 0 */, int index2 /* 0 *
 
 
 
-int main(){
-    char string[9] = {'a', 'b', 's', 'o', 'e', 's', 't', 'a', '\0'};
+int main(int argc, char *argv[]){
+    fprintf(stdout, "Inserisci la stringa: ");
+    char string[9];
+    fscanf(stdin, "%s", string);
 
     sostituzione_ricorsiva(string, 0, 0, 0);
     fprintf(stdout, "%s\n", string);
