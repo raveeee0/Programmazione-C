@@ -9,9 +9,10 @@ char* sostituzione_ricorsiva(char *string, int index1 /* 0 */, int index2 /* 0 *
 
 
 int main(){
-    char *string = "Prova5";
-    string[5] = '\0';
+    char string[9] = {'a', 'b', 's', 'o', 'e', 's', 't', 'a', '\0'};
+
     sostituzione_ricorsiva(string, 0, 0, 0);
+    fprintf(stdout, "%s\n", string);
 
     return EXIT_SUCCESS;
 }
@@ -27,13 +28,15 @@ char* sostituzione_ricorsiva(char *string, int index1 /* 0 */, int index2 /* 0 *
     if(index2 == -1){
         int cons_flag = index1;
 
-        while(string[cons_flag] != '\0')
-            if(!is_vowel(string[cons_flag])){
+        while(string[cons_flag] != '\0') {
+            if (!is_vowel(string[cons_flag])) {
                 string[index1] = string[cons_flag];
                 string[cons_flag] = 'a';
                 index2 = 0;
                 return sostituzione_ricorsiva(string, index1 + 1, index2, index3);
             }
+            cons_flag++;
+        }
 
         index3 = -1;
         return sostituzione_ricorsiva(string, index1, index2, index3);
@@ -42,10 +45,13 @@ char* sostituzione_ricorsiva(char *string, int index1 /* 0 */, int index2 /* 0 *
     if(is_vowel(string[index1])){
         index2 = -1;
         return sostituzione_ricorsiva(string, index1, index2, index3);
-    } else if(string[index1] == '\0'){
+    }
+
+    if(string[index1] == '\0'){
         index3 = -1;
         return sostituzione_ricorsiva(string, index1, index2, index3);
     }
+
     return sostituzione_ricorsiva(string, index1 + 1, index2, index3);
 }
 
