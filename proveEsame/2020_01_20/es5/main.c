@@ -12,9 +12,15 @@ struct occorrenza_tag{
 
 occorrenza *lettera_maggiore_frequenza(FILE *file_ptr);
 
-int main(){
+int main(int argc, char *argv[]){
 
-	char *path = "./file.txt";
+	if(argc != 2){
+		fprintf(stdout, "Inserire unicamente il nome del file come parametro.\n");
+		exit(1);
+	}
+	
+
+	char *path = argv[1];
 	
 	FILE *file_ptr = fopen(path, "r");
 
