@@ -27,6 +27,31 @@ occ *is_present(occ *head, char *temp);
 occ *add_node_in_order(occ *head, occ *node);
 void display_occ(occ *head);
 void free_occ(occ *head);
+stats *statistiche(occ *head);
+
+
+
+int main(int argc, char *argv[]){
+    FILE *fp = fopen(argv[1], "r");
+    if(fp == NULL)
+        exit(EXIT_FAILURE);
+
+    occ *freq = frequenza(fp);
+    display_occ(freq);
+    stats *ptr = statistiche(freq);
+
+    fprintf(stdout, "Tot: %d\nMax: %s %d\nMin: %s %d\n", ptr->tot_parole, ptr->freq_max_str, ptr->freq_max, ptr->freq_min_str, ptr->freq_min);
+
+
+    free_occ(freq);
+    free(ptr);
+
+    fclose(fp);
+
+    return EXIT_SUCCESS;
+}
+
+
 stats *statistiche(occ *head){
     if(head == NULL)
         return NULL;
@@ -62,28 +87,6 @@ stats *statistiche(occ *head){
 
     return nodo;
 }
-
-
-
-int main(int argc, char *argv[]){
-    FILE *fp = fopen(argv[1], "r");
-    if(fp == NULL)
-        exit(EXIT_FAILURE);
-
-    occ *freq = frequenza(fp);
-    display_occ(freq);
-    stats *ptr = statistiche(freq);
-
-    fprintf(stdout, "Tot: %d\nMax: %s %d\nMin: %s %d\n", ptr->tot_parole, ptr->freq_max_str, ptr->freq_max, ptr->freq_min_str, ptr->freq_min);
-
-
-    free_occ(freq);
-
-    fclose(fp);
-
-    return EXIT_SUCCESS;
-}
-
 
 
 void free_occ(occ *head){
